@@ -40,7 +40,7 @@ const ReservationSchema = new mongoose.Schema(
           return endDate > this.startDate;
         },
         message: (props) =>
-          `Rezervasyon sona erme tarihi ürünü kiralama tarihinden sonra olmalıdır.!`,
+          "Araba kiralama tarihi,rezervasyon sona erme tarihinden önce olmalıdır.!",
       },
     },
     endDate: {
