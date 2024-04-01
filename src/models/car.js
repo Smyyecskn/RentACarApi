@@ -62,7 +62,7 @@ const CarSchema = mongoose.Schema(
     },
     isPublish: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     createdId: {
       type: mongoose.Schema.Types.ObjectId,
