@@ -23,15 +23,17 @@ const ReservationSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
-      unique: true,
     },
     carId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Car",
-      unique: true,
     },
     startDate: {
+      type: Date,
+      trim: true,
+      required: true,
+    },
+    endDate: {
       type: Date,
       trim: true,
       required: true,
@@ -40,13 +42,8 @@ const ReservationSchema = new mongoose.Schema(
           return endDate > this.startDate;
         },
         message: (props) =>
-          "Araba kiralama tarihi,rezervasyon sona erme tarihinden önce olmalıdır.!",
+          "Rezervasyonun bitiş tarih,rezervasyon başlangıç tarihinden sonra olmalıdır.!",
       },
-    },
-    endDate: {
-      type: Date,
-      trim: true,
-      required: true,
     },
   },
   { collection: "reservations", timestamps: true }
