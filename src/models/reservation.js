@@ -35,6 +35,13 @@ const ReservationSchema = new mongoose.Schema(
       type: Date,
       trim: true,
       required: true,
+      validate: {
+        validator: function (endDate) {
+          return endDate > this.startDate;
+        },
+        message: (props) =>
+          `Rezervasyon sona erme tarihi ürünü kiralama tarihinden sonra olmalıdır.!`,
+      },
     },
     endDate: {
       type: Date,
@@ -47,4 +54,4 @@ const ReservationSchema = new mongoose.Schema(
 
 // Reservation Model:
 
-module.exports = mongoose.model("Reservation", ReservationModel);
+module.exports = mongoose.model("Reservation", ReservationSchema);

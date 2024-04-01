@@ -4,6 +4,8 @@
 ------------------------------------------------------- */
 // Reservation Controller:
 
+const Reservation = require("../models/reservation");
+
 module.exports = {
   list: async (req, res) => {
     /*
