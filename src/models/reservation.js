@@ -1,8 +1,8 @@
-"use strict"
+"use strict";
 /* -------------------------------------------------------
     NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
-const { mongoose } = require('../configs/dbConnection')
+const { mongoose } = require("../configs/dbConnection");
 /* ------------------------------------------------------- *
 {
     "userId": "65343222b67e9681f937f001",
@@ -17,4 +17,34 @@ const { mongoose } = require('../configs/dbConnection')
     "endDate": "2023-10-20"
 }
 /* ------------------------------------------------------- */
+
+const ReservationSchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+      unique: true,
+    },
+    carId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Car",
+      unique: true,
+    },
+    startDate: {
+      type: Date,
+      trim: true,
+      required: true,
+    },
+    endDate: {
+      type: Date,
+      trim: true,
+      required: true,
+    },
+  },
+  { collection: "reservations", timestamps: true }
+);
+
 // Reservation Model:
+
+module.exports = mongoose.model("Reservation", ReservationModel);

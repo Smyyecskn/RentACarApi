@@ -1,8 +1,8 @@
-"use strict"
+"use strict";
 /* -------------------------------------------------------
     NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
-const { mongoose } = require('../configs/dbConnection')
+const { mongoose } = require("../configs/dbConnection");
 /* ------------------------------------------------------- *
 {
     "plateNumber": "34ABC123",
@@ -30,4 +30,55 @@ const { mongoose } = require('../configs/dbConnection')
     "isPublish": false
 }
 /* ------------------------------------------------------- */
+
+const CarSchema = mongoose.Schema(
+  {
+    plateNumber: {
+      type: String,
+      trim: true,
+      required: true,
+      unique: true,
+    },
+    brand: {
+      type: String,
+      required: true,
+    },
+    model: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    year: {
+      type: Number,
+      required: true,
+    },
+    isAutomatic: {
+      type: Boolean,
+      default: false,
+    },
+    pricePerDay: {
+      type: Number,
+      required: true,
+    },
+    isPublish: {
+      type: Boolean,
+      default: false,
+    },
+    createdId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    updatedId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  {
+    collection: "cars",
+    timestamps: true,
+  }
+);
+
 // Car Model:
+
+module.exports = mongoose.model("Car", CarSchema);
