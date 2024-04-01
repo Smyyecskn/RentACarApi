@@ -3,7 +3,6 @@
     NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
 const router = require("express").Router();
-
 const car = require("../controllers/car");
 
 router.route("/").get(car.list).post(car.create);

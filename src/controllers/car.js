@@ -4,6 +4,8 @@
 ------------------------------------------------------- */
 // Car Controller:
 
+const Car = require("../models/car");
+
 module.exports = {
   list: async (req, res) => {
     /*
