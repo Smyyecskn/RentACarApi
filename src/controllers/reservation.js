@@ -38,6 +38,23 @@ module.exports = {
         req.body.isStaff=false
         req.body.isAdmin=false
         */
+
+    //!AYNI TARİHTE AYNI ARAÇ KİRALANAMAZ.
+    const { carId, startDate, endDate } = req.body; //
+
+    const sameReservation = await Reservation.findOne({
+      carId: carId,
+      $or: [{ startDate: { $lte: endDate }, endDate: { $gte: startDate } }],
+    });
+
+    if (sameReservation) {
+      return res.status(409).send({
+        error: true,
+        message:
+          " Bu tarihlerde aracımız rezervasyonludur. Farklı araçlardan birini seçebilirsiniz! ",
+      });
+    }
+
     const data = await Reservation.create(req.body);
 
     res.status(201).send({
